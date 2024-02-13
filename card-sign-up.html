@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Now! | Interactive Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&family=Work+Sans:wght@400;600;700&display=swap');
+    </style>
+</head>
+<style>
+    :root {
+        --standard-font-clr: hsl(270, 3%, 87%);
+        --input-font-clr: hsl(278, 68%, 11%);
+        --grey-font-clr: hsl(279, 6%, 55%);
+        --error-font-clr: hsl(0, 100%, 66%);
+        --test: yellow;
+        --main-font: 'Space Grotesk', sans-serif;
+        --primary-font-size: 16px;
+        --secondary-font-size: 12px;
+        --larger-font-size: 20px;
+    }
+
+    /*General Tag Styling*/
+
+    * {
+        box-sizing: border-box;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    body {
+        background-image: url('/interactive-card-details-form-main/images/bg-main-desktop.png');
+        background-repeat: no-repeat;
+        background-size: 25% 100vh;
+    }
+
+    p, input, label, input {
+        font-family: var(--main-font);
+    }
+
+    .input_Border {
+        height: 35px;
+        border-radius: 5px;
+        padding: 7px 5px 5px 5px;
+        margin: 5px 0px;
+        width: 100%;
+        border: 2px solid grey;
+    }
+
+    input:hover {
+        border: 2px solid var(--input-font-clr);
+        cursor: pointer;
+        transition: 0.1s ease;
+    }
+
+    label {
+        font-size: var(--secondary-font-size);
+    }
+
+    /*Section Styling*/
+
+    .div_container {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+    }
+
+    .sect_Cards {
+        width: 100%;
+        flex: 50%;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .div_cardFront {
+        position: relative;
+        right: 5%;
+        background-image: url('/interactive-card-details-form-main/images/card-front.svg');
+        padding: 20px;
+    }
+
+    .div_cardFrontText {
+        position: relative;
+        top: 80px
+    }
+
+    .p_cardNumber {
+        font-size: var(--larger-font-size);
+    }
+
+    .div_cardNameAndDate {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 20px 0px;
+    }
+
+    .div_cardBack {
+        position: relative;
+        left: 8%;
+        background-image: url('/interactive-card-details-form-main/images/bg-card-back.png');
+        text-align: right;
+    }
+
+    .p_cvcNumber {
+        position: relative;
+        top: 84px;
+        right: 40px
+    }
+
+    .sect_Details {
+        flex: 50%;
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sect_DetailsContainer {
+        width: 300px;
+        /*display: none;*/
+    }
+
+    .div_TextFields {
+        margin: 8px 0px;
+    }
+
+    .div_DateCvc {
+        display: flex;
+    }
+
+    .input_DateCvcBlock {
+        width: 40%;
+    }
+
+    .input_DateCvcBlockYear {
+        margin-left: 10px;
+    }
+
+    .span_ErrorMessage {
+        font-family: var(--main-font);
+        color: var(--error-font-clr);
+        font-size: var(--secondary-font-size);
+    }
+
+    .sect_ThankYou {
+        display: none;
+        width: 300px;
+        text-align: center;
+    }
+
+    .sect_ThankYou img {
+        margin: 10px 0px;
+    }
+
+    .p_ThankYouText {
+        margin: 10px 0px;
+        color: var(--primary-font-size);
+    }
+
+    .p_AfterThankYouText {
+        color: var(--grey-font-clr);
+    }
+
+    .sect_ThankYou input {
+        margin: 10px 0px;
+    }
+
+    /* Class Styling */
+
+    .class_Cards {
+        width: 350px;
+        height: 220px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        color: var(--standard-font-clr);
+    }
+
+    .input_Btn {
+        width: 100%;
+        height: 50px;
+        background-color: hsl(278, 68%, 11%);
+        color: var(--standard-font-clr);
+        border-radius: 20px;
+        border: 2px solid var(--input-font-clr);
+        cursor: pointer;
+    }
+
+    .input_Btn:hover {
+        background-color: #FFFFFF;
+        color: var(--input-font-clr);
+    }
+
+    /*Screen Sizes*/
+
+    @media screen and (max-width: 768px) {
+            body {
+                background-image: url('/interactive-card-details-form-main/images/bg-main-mobile.png');
+                background-position: top;
+                background-size: 100% 250px;
+            }
+            
+            .div_container {
+                flex-direction: column;
+            }
+
+            .sect_Details {
+                margin-left: 0px;
+                position: relative;
+                bottom: 20%;
+            }
+
+            .sect_Cards {
+                flex: 30%;
+            }
+
+            .class_Cards {
+                width: 300px;
+            }
+
+            .div_cardFront {
+                position: relative;
+                right: 4%;
+                top: 24%;
+                z-index: 1;
+                padding: 10px;
+            }
+
+            .div_cardBack {
+                position: relative;
+                left: 4%;
+                bottom: 50%;
+            }
+
+            .p_cvcNumber {
+                top: 70px;
+                right: 40px
+            }
+        }
+</style>
+<body>
+    <div class="div_container">
+        <!-- Cards -->
+        <section class="sect_Cards">
+
+            <!--Front of Card-->
+            <div class="div_cardFront class_Cards" id="cardFront">
+                <div class="div_cardFrontText">
+                    <p class="p_cardNumber" id="cardholder_Number"></p>
+                    <div class="div_cardNameAndDate" id="cardholder_MonthYear">
+                        <p class="p_cardName" id="cardholder_Name"></p>
+                        <p class="p_cardDate" id="cardholder_Date"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Back of Card-->
+            <div class="div_cardBack class_Cards" id="cardBack">
+                <p class="p_cvcNumber" id="cardholder_CVC"></p>
+            </div>
+
+        </section>
+
+        <!--Card Entry Details-->
+        <section class="sect_Details">
+            <form class="sect_DetailsContainer" name="name_cardForm">
+                <!--Cardholder Name-->
+                <div class="div_TextFields">
+                    <label input>CARDHOLDER NAME</label>
+                    <br>
+                    <input type="text" name="name_cardName" id="input_cardName" class="input_Border" placeholder="e.g. Jane Appleseed" required autocomplete="on">
+                    <span id="cardNameError" class="span_ErrorMessage"></span>
+                </div>
+
+                <!--Card Number-->
+                <div class="div_TextFields">
+                    <label input>CARD NUMBER</label>
+                    <br>
+                    <input type="text" name="name_cardNumber" id="input_cardNumber" class="input_Border" placeholder="e.g. 1234 5678 9123 0000" maxlength="19" required>
+                    <span id="cardNumberError" class="span_ErrorMessage"></span>
+                </div>
+
+                <!--Card Expirey Date & CVC-->
+                <div class="div_TextFields div_DateCvc">
+                    <!--Card Expirey Date-->
+                    <div>
+                        <label input>EXP. DATE (MM/YY)</label><br>
+                        <div class="div_DateCvc" id="">
+                            <input type="text" name="name_cardMonth" class="input_DateCvcBlock input_Border" id="input_cardDateMonth" placeholder="MM" maxlength="2" required>
+                            <input type="text" name="name_cardYear" class="input_DateCvcBlock input_DateCvcBlockYear input_Border" id="input_cardDateYear" placeholder="YY" maxlength="2" required>
+                        </div>
+                        <span id="cardDateError" class="span_ErrorMessage"></span>
+                    </div>
+                    <!--Card CVC-->
+                    <div>
+                        <label input>CVC</label><br>
+                        <input type="text" name="name_cardCVC" id="input_cardCVC" class="input_Border" placeholder="e.g. 123" maxlength="3" required>
+                        <span id="cardCvcError" class="span_ErrorMessage"></span>
+                    </div>
+                </div>
+
+                <!--Confirm Button-->
+                <div>
+                    <input type="submit" class="input_Btn" id="confrimBtn" value="Confirm" onclick="validateCardInputs()">
+                </div>
+            </form>
+            <!--Thank You Message-->
+            <section class="sect_ThankYou">
+                <div>
+                    <img src="/interactive-card-details-form-main/images/icon-complete.svg" alt="">
+                    <p class="p_ThankYouText">THANK YOU!</p>
+                    <p class="p_AfterThankYouText">We've added your card details</p>
+                    <input type="button" class="input_Btn" value="Continue" onclick="returnForm()">
+                </div>
+            </section> 
+        </section>
+    </div>
+
+    <script>
+        //REFERENCES
+
+        //Card Name
+        let nameInput = document.getElementById('input_cardName');
+        let nameCardDisplay = document.getElementById('cardholder_Name');
+
+        //Card Number
+        let numberInput = document.getElementById('input_cardNumber');
+        let numberCardDisplay = document.getElementById('cardholder_Number');
+
+        //Card Month
+        let monthInput = document.getElementById('input_cardDateMonth');
+
+        //Card Year
+        let yearInput = document.getElementById('input_cardDateYear');
+
+        //New Card & Year variable
+        let monthYearCardDisplay = document.getElementById('cardholder_Date');
+
+        //Card CVC
+        let cvcInput = document.getElementById('input_cardCVC');
+        let cvcCardDisplay = document.getElementById('cardholder_CVC');
+
+        //Front of Card that displays live inputs
+        let cardFrontDisplay = document.getElementById('cardFront');
+
+        //Back of Card that displays live inputs
+        let cardBackDisplay = document.getElementById('cardBack');
+
+        //Confirm Button & Error Messsages
+        let confirmButton = document.getElementById('confrimBtn');
+        let errNumberMsg = document.getElementById('cardNumberError').innerHTML;
+
+        //**********EVENT LISTENERS
+
+        numberInput.addEventListener('input', cardNumberSpaces);
+        nameInput.addEventListener('input', updateCard);
+        numberInput.addEventListener('input', updateCard);
+        monthInput.addEventListener('input', updateCard);
+        yearInput.addEventListener('input', updateCard);
+        cvcInput.addEventListener('input', updateCard);
+
+        //**********FUNCTIONS
+
+        // This fucntion creates a space between the card number every 4 digits
+        function cardNumberSpaces() {
+            let cardSpaceValue = numberInput.value.replace(/\s/g, '');
+            let formattedCardNumber = '';
+
+            for (let i = 0; i < cardSpaceValue.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedCardNumber = formattedCardNumber + ' ';
+                }
+                formattedCardNumber = formattedCardNumber + cardSpaceValue.charAt(i); 
+            }
+            numberInput.value = formattedCardNumber;
+        }
+
+        // This fucntion updates the Card Display with the User's inputs
+        function updateCard() {
+            let name = nameInput.value.toUpperCase();
+            let cardNumber = numberInput.value;
+            let month = monthInput.value;
+            let year = yearInput.value;
+            let monthYear = `${month} / ${year}`;
+            let cvc = cvcInput.value;
+
+            //Adds spaces between Card Number on the Card Display
+            cardNumber = cardNumber.replace(/(\d{4})/g, '$1 ');
+
+            nameCardDisplay.innerText = name;
+            numberCardDisplay.innerText = cardNumber;
+            monthYearCardDisplay.innerText = monthYear;
+            cvcCardDisplay.innerText = cvc;
+            
+            cardFrontDisplay.style.display = 'block';
+            cardBackDisplay.style.display = 'block';
+        }
+
+        // This fucntion validates the User's inputs
+        function validateCardInputs() {
+        //Prevents the form frm submiting
+        event.preventDefault();
+
+        //Validate Card Name
+        let nameValueError = document.getElementById('cardNameError');
+        let cardName = document.name_cardForm.name_cardName.value;
+
+        if (cardName != ) {
+            nameValueError.innerHTML = 'Wromg format, letters only';
+            document.name_cardForm.name_cardName.style.border = '2px solid hsl(0, 100%, 66%)';
+        } else {
+            numberValueError.innerHTML = '';
+            document.name_cardForm.name_cardName.style.border = '2px solid grey';
+        };
+        }
+        
+        // Validate Card Number Data
+        let numberValueError = document.getElementById('cardNumberError');
+        let cardNumber = document.name_cardForm.name_cardNumber.value;
+
+        if (cardNumber.length !== 19 || isNaN(cardNumber.replace(/\s/g, ''))) {
+            numberValueError.innerHTML = 'Wrong format, numbers only';
+            document.name_cardForm.name_cardNumber.style.border = '2px solid hsl(0, 100%, 66%)';
+        } else {
+            numberValueError.innerHTML = '';
+            document.name_cardForm.name_cardNumber.style.border = '2px solid grey';
+        };
+
+        // Validate Card Date Data
+        let dateValueError = document.getElementById('cardDateError');
+        let cardMonth = document.name_cardForm.name_cardMonth.value;
+        let cardYear = document.name_cardForm.name_cardYear.value;
+
+        if (cardMonth.length !== 2 || isNaN(cardMonth) || cardYear.length !== 2 || isNaN(cardYear)) {
+            dateValueError.innerHTML = 'Wrong format, numbers only';
+            document.name_cardForm.name_cardMonth.style.border = '2px solid hsl(0, 100%, 66%)';
+            document.name_cardForm.name_cardYear.style.border = '2px solid hsl(0, 100%, 66%)';
+        } else {
+            dateValueError.innerHTML = '';
+            document.name_cardForm.name_cardMonth.style.border = '2px solid grey';
+            document.name_cardForm.name_cardYear.style.border = '2px solid grey';
+        };
+
+        // Validate Card CVC Data
+        let cvcValueError = document.getElementById('cardCvcError');
+        let cardCVC = document.name_cardForm.name_cardCVC.value;
+
+        if (cardCVC.length !== 3 || isNaN(cardCVC)) {
+            cvcValueError.innerHTML = 'Wrong format, numbers only';
+            document.name_cardForm.name_cardCVC.style.border = '2px solid hsl(0, 100%, 66%)';
+        } else {
+            cvcValueError.innerHTML = '';
+            document.name_cardForm.name_cardCVC.style.border = '2px solid grey';
+        };
+
+        clearForm();
+        };
+
+        //This fucntion clears the form once user inout is validated
+        function clearForm() {
+            document.name_cardForm.reset();
+            displayThankYou();
+        };
+
+        let cardForm;
+        let thankYouSection;
+
+        //This fucntion displays the Thank You Message
+        function displayThankYou() {
+            cardForm = document.querySelector('.sect_DetailsContainer');
+            thankYouSection = document.querySelector('.sect_ThankYou');
+            cardForm.style.display = 'none';
+            thankYouSection.style.display = 'block';
+        };
+
+        function returnForm() {
+            cardForm.style.display = 'block';
+            thankYouSection.style.display = 'none';
+
+            nameCardDisplay.innerText = '';
+            numberCardDisplay.innerText = '';
+            monthYearCardDisplay.innerText = '';
+            cvcCardDisplay.innerText = '';
+        };
+    </script>
+</body>
+</html>
